@@ -1,0 +1,854 @@
+{
+	"info": {
+		"_postman_id": "bfb86f86-416e-4111-ac82-ee511307c56f",
+		"name": "PetStore Crowdtest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddPet",
+			"item": [
+				{
+					"name": "AddPet-Sucess",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Object is contained\", () => {\r",
+									"  const expectedObject = {\r",
+									"    \"status\": \"available\",\r",
+									"    \"id\": 99855,\r",
+									"  };\r",
+									"  pm.expect(pm.response.json()).to.deep.include(expectedObject);\r",
+									"});\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"99855\",\r\n  \"category\": {\r\n    \"id\": 15,\r\n    \"name\": \"testeapi\"\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"photoUrls\": [\"bit.com/tes332\"],\r\n  \"tags\":[\r\n   {\"id\": 10, \r\n  \"name\": \"testeapi\"}\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-validateBOdy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Status é 400\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"})\r",
+									"pm.test(\"O Response do Body é um JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"ID não é null\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"-99\"\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\"\r\n  \"status\": \"testeid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-StatusAvailable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Object is contained\", () => {\r",
+									"  const expectedObject = {\r",
+									"    \"status\": \"available\",\r",
+									"    \"id\": 9955,\r",
+									"  };\r",
+									"  pm.expect(pm.response.json()).to.deep.include(expectedObject);\r",
+									"});\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"9955\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-StatusPending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Object is contained\", () => {\r",
+									"  const expectedObject = {\r",
+									"    \"status\": \"pending\",\r",
+									"    \"id\": 9956\r",
+									"  };\r",
+									"  pm.expect(pm.response.json()).to.deep.include(expectedObject);\r",
+									"});\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"9956\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-StatusSold",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Object is contained\", () => {\r",
+									"  const expectedObject = {\r",
+									"    \"status\": \"sold\",\r",
+									"    \"id\": 9957\r",
+									"  };\r",
+									"  pm.expect(pm.response.json()).to.deep.include(expectedObject);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"9957\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"sold\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-StatusDifferent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"9958\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"teste58\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-IDNULL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status é 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"Body contem id\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"pm.test(\"O Response do Body é um JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"ID não é null\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": null,\r\n  \"category\": {\r\n    \"id\": null\r\n  },\r\n  \"name\": null,\r\n  \"status\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-IDEMPTY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status é 415\", function() {\r",
+									"    pm.response.to.have.status(415);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"O Response do Body é um JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-IDmax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Status code is 500\", function() {\r",
+									"    pm.response.to.have.status(500);\r",
+									"})\r",
+									"pm.test(\"O Response do Body é um JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"9999555999555995559958\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"testeid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPet-IDMinNegative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Response structure\r",
+									"{\r",
+									"    \"id\": 9223127596080618377,\r",
+									"    \"category\": {\r",
+									"        \"id\": 0\r",
+									"    },\r",
+									"    \"name\": \"zaratel\",\r",
+									"    \"photoUrls\": [],\r",
+									"    \"tags\": [],\r",
+									"    \"status\": \"available\"\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Status é 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"O Response do Body é um JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"ID não é null\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.expect(jsonData.id).not.eql(null);\r",
+									"});\r",
+									"pm.test(\"Body contem id\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"pm.test(\"Body contem id, nome, status\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"status\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"-99\",\r\n  \"category\": {\r\n    \"id\": 15\r\n  },\r\n  \"name\": \"zaratel\",\r\n  \"status\": \"testeid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}pet",
+							"host": [
+								"{{baseurl}}pet"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SearchPet",
+			"item": [
+				{
+					"name": "GetPetId-Sucess",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/99",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"99"
+							]
+						},
+						"description": "Get Pet ID with test status response."
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/-99",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"-99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Zero",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/0",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Maxid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/9998555546546454",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"9998555546546454"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-InvalidID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}pet/98633144",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"98633144"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/null",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"null"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Aplhanum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/e9d85",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								"e9d85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPetId-Empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function() {\r",
+									"    pm.response.to.have.status(405);\r",
+									"})\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}pet/",
+							"host": [
+								"{{baseurl}}pet"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
